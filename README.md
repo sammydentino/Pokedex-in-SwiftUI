@@ -2,4 +2,4 @@
 Pokedex written in SwiftUI
 
 ## Copyright Notice
-Please note everything in repository is copyrighted by the Pokémon Company and its affiliates.
+Please note that everything found within the repository is copyrighted by The Pokémon Company and its affiliates.
