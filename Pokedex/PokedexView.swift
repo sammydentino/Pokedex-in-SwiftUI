@@ -18,7 +18,7 @@ struct PokedexView: View {
 		VStack(alignment: .leading, spacing: 0) {
 			SearchBar(text: self.$searchQuery).padding(.bottom, 10)
 			Form {
-				Picker(selection: $selected, label: Text("Dex")) {
+				Picker(selection: $selected, label: Text("Dex").font(.subheadline).bold()) {
 					Text("All - \(fetch.pokemon.count) Pokémon").tag(0)
 					Text("Generation 1 - \(fetch.Gen1.count) Pokemon").tag(1)
 					Text("Generation 2 - \(fetch.Gen2.count) Pokemon").tag(2)
@@ -28,7 +28,7 @@ struct PokedexView: View {
 					Text("Generation 6 - \(fetch.Gen6.count) Pokemon").tag(6)
 					Text("Generation 7 - \(fetch.Gen7.count) Pokemon").tag(7)
 					Text("Generation 8 - \(fetch.Gen8.count) Pokemon").tag(8)
-				}.pickerStyle(DefaultPickerStyle()).padding(.leading, 5).padding(.trailing, 5)
+				}.pickerStyle(DefaultPickerStyle())
 			}.frame(minWidth: 0, maxWidth: .infinity, minHeight: 80, maxHeight: 80)
 			if selected == 0 {
 				VStack(alignment: .leading, spacing: 0) {
