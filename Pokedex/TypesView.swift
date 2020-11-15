@@ -14,7 +14,7 @@ struct TypesView: View {
 	@State private var searchQuery: String = ""
 	var body: some View {
 		VStack(alignment: .leading, spacing: 0) {
-			SearchBar(text: self.$searchQuery).padding(.bottom, 10)
+			SearchBar(text: self.$searchQuery).padding(.vertical, 10)
 			List(fetch.types.filter {
                 self.searchQuery.isEmpty ? true : "\($0)".lowercased().contains(self.searchQuery.lowercased())
 			}) { item in
@@ -25,7 +25,7 @@ struct TypesView: View {
                         Image(item.name)
                     }
 				}
-			}.listStyle(GroupedListStyle())
+			}.fixList()
 		}
 	}
 }
@@ -35,28 +35,28 @@ struct TypeDetail: View {
 	
 	var body: some View {
 		List {
+            Image(type.name).makeNewLineSection(str: "Pokemon Type")
             if(type.strengths.count != 0) {
-                Section(header: Text("Strong Against").font(.subheadline).bold()) {
+                Group {
                     ForEach(type.strengths, id: \.self) { strength in
                         Image(strength)
                     }
-                }
+                }.makeSection(str: "Strong Against")
             }
             if(type.weaknesses.count != 0) {
-                Section(header: Text("Weak Against").font(.subheadline).bold()) {
+                Group {
                     ForEach(type.weaknesses, id: \.self) { weakness in
                         Image(weakness)
                     }
-                }
+                }.makeSection(str: "Weak Against")
             }
             if(type.immunes.count != 0) {
-                Section(header: Text("No Affect Against").font(.subheadline).bold()) {
+                Group {
                     ForEach(type.immunes, id: \.self) { immune in
                         Image(immune)
                     }
-                }
+                }.makeSection(str: "No Affect Against")
             }
-			
-		}.listStyle(GroupedListStyle())
+		}.fixList()
 	}
 }

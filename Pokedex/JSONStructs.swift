@@ -74,10 +74,6 @@ struct Name : Codable {
 	let japanese : String!
 	let chinese : String!
 	let french : String!
-	var imgUrl: String!
-	var shinyImgUrl: String!
-	var fixedName: String!
-	let pattern = "[^A-Za-z]+"
 
 	enum CodingKeys: String, CodingKey {
 		case english = "english"
@@ -92,9 +88,6 @@ struct Name : Codable {
 		japanese = try values.decodeIfPresent(String.self, forKey: .japanese) ?? "N/A"
 		chinese = try values.decodeIfPresent(String.self, forKey: .chinese) ?? "N/A"
 		french = try values.decodeIfPresent(String.self, forKey: .french) ?? "N/A"
-		fixedName = english.replacingOccurrences(of: pattern, with: "", options: [.regularExpression])
-		imgUrl = "https://img.pokemondb.net/sprites/home/normal/\(fixedName.lowercased()).png"
-		shinyImgUrl = "https://img.pokemondb.net/sprites/home/shiny/\(fixedName.lowercased()).png"
 	}
 }
 

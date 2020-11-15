@@ -10,14 +10,14 @@ import SwiftUI
 import URLImage
 
 struct PokedexView: View {
-	@ObservedObject var fetch = getPokedex()
+    let fetch: [Pokedex]!
 	@State private var showingDetail = false
 	@State private var searchQuery: String = ""
 	@State private var selected = 0
 	var body: some View {
 		VStack(alignment: .leading, spacing: 0) {
-			SearchBar(text: self.$searchQuery).padding(.bottom, 10)
-            List(fetch.pokemon.filter {
+			SearchBar(text: self.$searchQuery).padding(.vertical, 10)
+            List(fetch.filter {
                 self.searchQuery.isEmpty ? true : "\($0)".lowercased().contains(self.searchQuery.lowercased())
             }) { item in
                 NavigationLink(destination: PokemonView(pokemon: item).navigationBarTitle("\(item.name.english) - #\(item.pokeid)")) {
@@ -29,14 +29,18 @@ struct PokedexView: View {
                                 .clipped()
                         }
                         .frame(width: 50, height: 50).padding(.bottom, 5)
-                        Text("\(item.name.english)").font(.subheadline).bold()
+                        Text("\(item.name.english)").font(.subheadline).bold().minimumScaleFactor(0.5)
+                        Text("#\(item.pokeid)").font(.caption).bold().foregroundColor(.secondary).tPad(i: 1.5)
                         Spacer()
-                        ForEach(item.type, id: \.self) { type in
-                            Image(type)
+                        VStack {
+                            ForEach(item.type, id: \.self) { type in
+                                Image(type).resizable()
+                                    .aspectRatio(contentMode: .fill).frame(width: 40, height: 17.5)
+                            }
                         }
                     }
                 }
-            }.listStyle(GroupedListStyle())
+            }.fixList()
 		}
 	}
 }
@@ -46,14 +50,14 @@ struct PokemonView: View {
 	var body: some View {
 		VStack(alignment: .leading, spacing: 0) {
 			List {
-                Section(header: Text("Type").font(.subheadline).bold()) {
+                Group {
                     HStack {
                         ForEach(pokemon.type, id: \.self) { item in
                             Image(item)
                         }
                     }
-                }
-				Section(header: Text("Regular & Shiny Forms").font(.subheadline).bold()) {
+                }.makeNewLineSection(str: "Type")
+				Group {
 					HStack {
 						Spacer()
 						URLImage(URLRequest(url: (URL(string: pokemon.imgUrl)!))) { proxy in
@@ -75,9 +79,9 @@ struct PokemonView: View {
 						.frame(width: 100, height: 100)
 						Spacer()
 					}
-				}
+                }.makeSection(str: "Regular & Shiny Forms")
 				
-				Section(header: Text("Base Stats").font(.subheadline).bold()) {
+				Group {
 					HStack {
 						Text("HP").font(.subheadline).bold()
 						Spacer()
@@ -108,8 +112,8 @@ struct PokemonView: View {
 						Spacer()
 						Text("\(pokemon.base.speed)").font(.subheadline).bold().foregroundColor(.purple)
 					}
-				}
-				Section(header: Text("Name Translations").font(.subheadline).bold()) {
+                }.makeSection(str: "Base Stats")
+				Group {
 					HStack {
 						Text("Japanese").font(.subheadline).bold()
 						Spacer()
@@ -125,8 +129,8 @@ struct PokemonView: View {
 						Spacer()
 						Text("\(pokemon.name.french)").font(.subheadline).bold()
 					}
-				}
-			}
+                }.makeSection(str: "Name Translations")
+            }.fixList()
 		}
 	}
 }

@@ -14,7 +14,7 @@ struct MovesView: View {
 	@State private var searchQuery: String = ""
 	var body: some View {
 		VStack(alignment: .leading, spacing: 0) {
-			SearchBar(text: self.$searchQuery).padding(.bottom, 10)
+			SearchBar(text: self.$searchQuery).padding(.vertical, 10)
 			List {
 				ForEach(fetch.moves.filter {
                     self.searchQuery.isEmpty ? true : "\($0)".lowercased().contains(self.searchQuery.lowercased())
@@ -27,7 +27,7 @@ struct MovesView: View {
                         }
 					}
 				}
-			}.listStyle(GroupedListStyle())
+			}.fixList()
 		}
 	}
 }
@@ -37,7 +37,7 @@ struct MovesDetail: View {
 	
 	var body: some View {
 		List {
-			Section(header: Text("Type").font(.subheadline).bold()) {
+			Group {
                 HStack {
                     Image(move.type)
                     Spacer()
@@ -47,8 +47,8 @@ struct MovesDetail: View {
                         Image("Physical")
                     }
                 }
-			}
-			Section(header: Text("Stats").font(.subheadline).bold()) {
+            }.makeNewLineSection(str: "Type")
+			Group {
 				HStack {
 					Text("Accuracy").font(.subheadline).bold()
 					Spacer()
@@ -64,8 +64,8 @@ struct MovesDetail: View {
 					Spacer()
 					Text("\(move.pp)").font(.subheadline).bold().foregroundColor(.purple)
 				}
-			}
-			Section(header: Text("Name Translations").font(.subheadline).bold()) {
+            }.makeSection(str: "Stats")
+			Group {
 				HStack {
 					Text("Japanese").font(.subheadline).bold()
 					Spacer()
@@ -76,7 +76,7 @@ struct MovesDetail: View {
 					Spacer()
 					Text("\(move.cname)").font(.subheadline).bold()
 				}
-			}
-		}
+            }.makeSection(str: "Name Translations")
+        }.fixList()
 	}
 }

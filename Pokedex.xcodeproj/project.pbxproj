@@ -17,6 +17,7 @@
 		EB5CFA7824704AB400FC155A /* PokedexUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5CFA7724704AB400FC155A /* PokedexUITests.swift */; };
 		EB5CFA87247055C800FC155A /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = EB5CFA86247055C800FC155A /* URLImage */; };
 		EB5CFA8B24708CD200FC155A /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB5CFA8A24708CD200FC155A /* NetworkExtension.framework */; };
+		EBC3E12F2561C4B400C9535F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC3E12E2561C4B400C9535F /* Extensions.swift */; };
 		EBC4B5932472195C00A40298 /* NationalDex.json in Resources */ = {isa = PBXBuildFile; fileRef = EBC4B5922472195C00A40298 /* NationalDex.json */; };
 		EBC4B5972472211400A40298 /* Pokedex.json in Resources */ = {isa = PBXBuildFile; fileRef = EBC4B5962472211400A40298 /* Pokedex.json */; };
 		EBEC67B72471C81B00958776 /* JSONStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEC67B62471C81B00958776 /* JSONStructs.swift */; };
@@ -25,7 +26,6 @@
 		EBEC67BD2471C8DE00958776 /* ItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEC67BC2471C8DE00958776 /* ItemsView.swift */; };
 		EBEC67BF2471C90800958776 /* TypesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEC67BE2471C90800958776 /* TypesView.swift */; };
 		EBEC67C22471C94D00958776 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEC67C12471C94D00958776 /* SearchBar.swift */; };
-		EBEC67C42471C97B00958776 /* AnyGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEC67C32471C97B00958776 /* AnyGestureRecognizer.swift */; };
 		EBEC67C62471CAE200958776 /* APIrequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEC67C52471CAE200958776 /* APIrequests.swift */; };
 		EBEC67C82471CB0500958776 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEC67C72471CB0500958776 /* WebView.swift */; };
 /* End PBXBuildFile section */
@@ -64,6 +64,7 @@
 		EB5CFA7924704AB400FC155A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB5CFA8824708CA700FC155A /* Pokedex.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Pokedex.entitlements; sourceTree = "<group>"; };
 		EB5CFA8A24708CD200FC155A /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
+		EBC3E12E2561C4B400C9535F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		EBC4B5922472195C00A40298 /* NationalDex.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = NationalDex.json; sourceTree = "<group>"; };
 		EBC4B5962472211400A40298 /* Pokedex.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Pokedex.json; sourceTree = "<group>"; };
 		EBEC67B62471C81B00958776 /* JSONStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONStructs.swift; sourceTree = "<group>"; };
@@ -72,7 +73,6 @@
 		EBEC67BC2471C8DE00958776 /* ItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsView.swift; sourceTree = "<group>"; };
 		EBEC67BE2471C90800958776 /* TypesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypesView.swift; sourceTree = "<group>"; };
 		EBEC67C12471C94D00958776 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
-		EBEC67C32471C97B00958776 /* AnyGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyGestureRecognizer.swift; sourceTree = "<group>"; };
 		EBEC67C52471CAE200958776 /* APIrequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIrequests.swift; sourceTree = "<group>"; };
 		EBEC67C72471CB0500958776 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -145,6 +145,7 @@
 				EBEC67BC2471C8DE00958776 /* ItemsView.swift */,
 				EBEC67BE2471C90800958776 /* TypesView.swift */,
 				EBEC67C52471CAE200958776 /* APIrequests.swift */,
+				EBC3E12E2561C4B400C9535F /* Extensions.swift */,
 			);
 			path = Pokedex;
 			sourceTree = "<group>";
@@ -187,7 +188,6 @@
 			isa = PBXGroup;
 			children = (
 				EBEC67C12471C94D00958776 /* SearchBar.swift */,
-				EBEC67C32471C97B00958776 /* AnyGestureRecognizer.swift */,
 				EBEC67C72471CB0500958776 /* WebView.swift */,
 			);
 			path = Utilities;
@@ -334,12 +334,12 @@
 			files = (
 				EB5CFA5624704AB300FC155A /* AppDelegate.swift in Sources */,
 				EB5CFA5824704AB300FC155A /* SceneDelegate.swift in Sources */,
-				EBEC67C42471C97B00958776 /* AnyGestureRecognizer.swift in Sources */,
 				EBEC67BF2471C90800958776 /* TypesView.swift in Sources */,
 				EBEC67BD2471C8DE00958776 /* ItemsView.swift in Sources */,
 				EBEC67B92471C86200958776 /* PokedexView.swift in Sources */,
 				EBEC67C62471CAE200958776 /* APIrequests.swift in Sources */,
 				EBEC67C22471C94D00958776 /* SearchBar.swift in Sources */,
+				EBC3E12F2561C4B400C9535F /* Extensions.swift in Sources */,
 				EB5CFA5A24704AB300FC155A /* ContentView.swift in Sources */,
 				EBEC67C82471CB0500958776 /* WebView.swift in Sources */,
 				EBEC67B72471C81B00958776 /* JSONStructs.swift in Sources */,
@@ -512,7 +512,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Pokedex/Pokedex.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Pokedex/Preview Content\"";
 				DEVELOPMENT_TEAM = G9X97N3XGU;
 				ENABLE_PREVIEWS = YES;
@@ -535,7 +535,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Pokedex/Pokedex.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Pokedex/Preview Content\"";
 				DEVELOPMENT_TEAM = G9X97N3XGU;
 				ENABLE_PREVIEWS = YES;
