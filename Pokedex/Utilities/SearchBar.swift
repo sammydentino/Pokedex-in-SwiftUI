@@ -16,7 +16,7 @@ struct SearchBar: View {
     var body: some View {
         HStack {
  
-            TextField("Case Sensitive", text: $text)
+            TextField("Search", text: $text)
                 .padding(7)
                 .padding(.horizontal, 25)
                 .background(Color(.systemGray6))

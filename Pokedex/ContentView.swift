@@ -27,29 +27,29 @@ struct ContentView: View {
 			}.tag(0)
 			NavigationView {
 				VStack(alignment: .leading, spacing: 0) {
-					MovesView().navigationBarTitle("Moves")
-				}
-			}.tabItem {
-				Image(systemName: "speedometer")
-				Text("Moves")
-			}.tag(1)
-			NavigationView {
-				VStack(alignment: .leading, spacing: 0) {
 					TypesView().navigationBarTitle("Types")
 				}
 			}.tabItem {
 				Image(systemName: "circle.grid.hex")
 				Text("Types")
-			}.tag(2)
-			NavigationView {
+			}.tag(1)
+            NavigationView {
+                VStack(alignment: .leading, spacing: 0) {
+                    MovesView().navigationBarTitle("Moves")
+                }
+            }.tabItem {
+                Image(systemName: "speedometer")
+                Text("Moves")
+            }.tag(2)
+			/*NavigationView {
 				VStack(alignment: .leading, spacing: 0) {
 					ItemsView().navigationBarTitle("Items")
 				}
 			}.tabItem {
 				Image(systemName: "gift")
 				Text("Items")
-			}.tag(3)
-		}
+			}.tag(3)*/
+        }.animation(.default)
 	}
 }
 

@@ -44,7 +44,7 @@ struct ItemsView: View {
 					SearchBar(text: self.$searchQuery).padding(.leading, 6).padding(.trailing, 6).padding(.bottom, 10)
 					List {
 						ForEach(fetch.items.filter {
-							self.searchQuery.isEmpty ? true : "\($0)".contains(self.searchQuery)
+                            self.searchQuery.isEmpty ? true : "\($0)".lowercased().contains(self.searchQuery.lowercased())
 						}) { item in
 							NavigationLink(destination: ItemsDetail(item: item).navigationBarTitle("\(item.name.english)")) {
 								Text("\(item.name.english)").font(.subheadline).bold()

@@ -16,10 +16,14 @@ struct TypesView: View {
 		VStack(alignment: .leading, spacing: 0) {
 			SearchBar(text: self.$searchQuery).padding(.bottom, 10)
 			List(fetch.types.filter {
-				self.searchQuery.isEmpty ? true : "\($0)".contains(self.searchQuery)
+                self.searchQuery.isEmpty ? true : "\($0)".lowercased().contains(self.searchQuery.lowercased())
 			}) { item in
 				NavigationLink(destination: TypeDetail(type: item).navigationBarTitle("\(item.name) Type")) {
-					Text("\(item.name)").font(.subheadline).bold()
+                    HStack {
+                        Text("\(item.name)").font(.subheadline).bold()
+                        Spacer()
+                        Image(item.name)
+                    }
 				}
 			}.listStyle(GroupedListStyle())
 		}
@@ -31,33 +35,28 @@ struct TypeDetail: View {
 	
 	var body: some View {
 		List {
-			Section(header: Text("Strengths").font(.subheadline).bold()) {
-				if(type.strengths.count == 0) {
-					Text("None").font(.subheadline).bold()
-				} else {
-					ForEach(type.strengths, id: \.self) { strength in
-						Text("\(strength)").font(.subheadline).bold()
-					}
-				}
-			}
-			Section(header: Text("Weaknesses").font(.subheadline).bold()) {
-				if(type.weaknesses.count == 0) {
-					Text("None").font(.subheadline).bold()
-				} else {
-					ForEach(type.weaknesses, id: \.self) { weakness in
-						Text("\(weakness)").font(.subheadline).bold()
-					}
-				}
-			}
-			Section(header: Text("Immunities").font(.subheadline).bold()) {
-				if(type.immunes.count == 0) {
-					Text("None").font(.subheadline).bold()
-				} else {
-					ForEach(type.immunes, id: \.self) { immune in
-						Text("\(immune)").font(.subheadline).bold()
-					}
-				}
-			}
+            if(type.strengths.count != 0) {
+                Section(header: Text("Strong Against").font(.subheadline).bold()) {
+                    ForEach(type.strengths, id: \.self) { strength in
+                        Image(strength)
+                    }
+                }
+            }
+            if(type.weaknesses.count != 0) {
+                Section(header: Text("Weak Against").font(.subheadline).bold()) {
+                    ForEach(type.weaknesses, id: \.self) { weakness in
+                        Image(weakness)
+                    }
+                }
+            }
+            if(type.immunes.count != 0) {
+                Section(header: Text("No Affect Against").font(.subheadline).bold()) {
+                    ForEach(type.immunes, id: \.self) { immune in
+                        Image(immune)
+                    }
+                }
+            }
+			
 		}.listStyle(GroupedListStyle())
 	}
 }

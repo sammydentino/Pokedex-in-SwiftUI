@@ -18,11 +18,9 @@ class getPokedex : ObservableObject {
 	@Published var Gen6: [Pokedex]!
 	@Published var Gen7: [Pokedex]!
 	@Published var Gen8: [Pokedex]!
-	//@Published var pokemon2: [Pokemon2]!
 	
 	init() {
 		loadPokedex()
-		//loadPokemon()
 		Gen1 = Array(pokemon.prefix(151))
 		Gen2 = Array((pokemon.prefix(251)).suffix(100))
 		Gen3 = Array((pokemon.prefix(386)).suffix(135))
@@ -30,8 +28,7 @@ class getPokedex : ObservableObject {
 		Gen5 = Array((pokemon.prefix(649)).suffix(156))
 		Gen6 = Array((pokemon.prefix(721)).suffix(72))
 		Gen7 = Array(pokemon.prefix(809).suffix(88))
-		Gen8 = Array(pokemon.suffix(81))
-		
+		Gen8 = Array(pokemon.suffix(84))
 	}
 	
 	func loadPokedex() {
@@ -47,19 +44,6 @@ class getPokedex : ObservableObject {
 			}
 		}
 	}
-	/*func loadPokemon() {
-		let urlString = "https://raw.githubusercontent.com/sammydentino/Pokedex/master/Pokedex.json"
-		
-		if let url = URL(string: urlString) {
-			if let d = try? Data(contentsOf: url) {
-				// we're OK to parse!
-				let decoder = JSONDecoder()
-				if let data = try? decoder.decode([Pokemon2].self, from: d) {
-					pokemon2 = data
-				}
-			}
-		}
-	}*/
 }
 
 class getItems: ObservableObject {
@@ -123,6 +107,9 @@ class getMoves: ObservableObject {
 	
 	init() {
 		loadMoves()
+        moves = moves.sorted {
+            $0.ename < $1.ename
+        }
 	}
 	
 	func loadMoves() {

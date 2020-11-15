@@ -17,10 +17,14 @@ struct MovesView: View {
 			SearchBar(text: self.$searchQuery).padding(.bottom, 10)
 			List {
 				ForEach(fetch.moves.filter {
-					self.searchQuery.isEmpty ? true : "\($0)".contains(self.searchQuery)
+                    self.searchQuery.isEmpty ? true : "\($0)".lowercased().contains(self.searchQuery.lowercased())
 				}) { item in
 					NavigationLink(destination: MovesDetail(move: item).navigationBarTitle("\(item.ename)")) {
-						Text("\(item.ename)").font(.subheadline).bold()
+                        HStack {
+                            Text("\(item.ename)").font(.subheadline).bold()
+                            Spacer()
+                            Image(item.type)
+                        }
 					}
 				}
 			}.listStyle(GroupedListStyle())
@@ -34,7 +38,15 @@ struct MovesDetail: View {
 	var body: some View {
 		List {
 			Section(header: Text("Type").font(.subheadline).bold()) {
-				Text("\(move.type)").font(.subheadline).bold()
+                HStack {
+                    Image(move.type)
+                    Spacer()
+                    if(move.power == 0) {
+                        Image("Special")
+                    } else {
+                        Image("Physical")
+                    }
+                }
 			}
 			Section(header: Text("Stats").font(.subheadline).bold()) {
 				HStack {
