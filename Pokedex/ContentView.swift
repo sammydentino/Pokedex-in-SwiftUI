@@ -20,7 +20,11 @@ struct ContentView: View {
 			NavigationView {
 				VStack(alignment: .center, spacing: 0) {
                     List {
-                        Image("Pokemon").padding(.vertical).makeEmptySection()
+                        HStack {
+                            Spacer()
+                            Image("Pokemon").padding(.vertical)
+                            Spacer()
+                        }.makeEmptySection()
                         NavigationLink(destination: PokedexView(fetch: fetch.pokemon).navigationBarTitle("National Dex")) {
                             Text("All \(fetch.pokemon.count) Pokémon")
                                 .subhead()
