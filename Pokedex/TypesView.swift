@@ -9,34 +9,124 @@
 import SwiftUI
 
 struct TypesView: View {
-	@ObservedObject var fetch = getTypes()
-	@State private var showingDetail = false
-	@State private var searchQuery: String = ""
+    let types: [Type]!
 	var body: some View {
 		VStack(alignment: .leading, spacing: 0) {
-			SearchBar(text: self.$searchQuery).padding(.vertical, 10)
-			List(fetch.types.filter {
-                self.searchQuery.isEmpty ? true : "\($0)".lowercased().contains(self.searchQuery.lowercased())
-			}) { item in
-				NavigationLink(destination: TypeDetail(type: item).navigationBarTitle("\(item.name) Type")) {
-                    HStack {
-                        Text("\(item.name)").font(.subheadline).bold()
-                        Spacer()
-                        Image(item.name)
+            List {
+                ForEach(types) { item in
+                    NavigationLink(destination: TypeDetail(type: item).navigationBarTitle("\(item.en) Type")) {
+                        HStack {
+                            Text("\(item.en)").font(.subheadline).bold()
+                            Spacer()
+                            Image(item.en)
+                        }
                     }
-				}
+                }.makeEmptySection()
 			}.fixList()
 		}
 	}
 }
 
 struct TypeDetail: View {
-	let type: Types!
+	let type: Type!
 	
 	var body: some View {
 		List {
-            Image(type.name).makeNewLineSection(str: "Pokemon Type")
-            if(type.strengths.count != 0) {
+            Group {
+                Group {
+                    HStack {
+                        Image("Normal")
+                        Spacer()
+                        Text(String(format: "%.1f", type.effectivness.normal) + "x").subhead()
+                    }
+                    HStack {
+                        Image("Fighting")
+                        Spacer()
+                        Text(String(format: "%.1f", type.effectivness.fighting) + "x").subhead()
+                    }
+                    HStack {
+                        Image("Flying")
+                        Spacer()
+                        Text(String(format: "%.1f", type.effectivness.flying) + "x").subhead()
+                    }
+                    HStack {
+                        Image("Poison")
+                        Spacer()
+                        Text(String(format: "%.1f", type.effectivness.poison) + "x").subhead()
+                    }
+                    HStack {
+                        Image("Ground")
+                        Spacer()
+                        Text(String(format: "%.1f", type.effectivness.ground) + "x").subhead()
+                    }
+                    HStack {
+                        Image("Rock")
+                        Spacer()
+                        Text(String(format: "%.1f", type.effectivness.rock) + "x").subhead()
+                    }
+                    HStack {
+                        Image("Bug")
+                        Spacer()
+                        Text(String(format: "%.1f", type.effectivness.bug) + "x").subhead()
+                    }
+                    HStack {
+                        Image("Ghost")
+                        Spacer()
+                        Text(String(format: "%.1f", type.effectivness.ghost) + "x").subhead()
+                    }
+                    HStack {
+                        Image("Steel")
+                        Spacer()
+                        Text(String(format: "%.1f", type.effectivness.steel) + "x").subhead()
+                    }
+                    HStack {
+                        Image("Fire")
+                        Spacer()
+                        Text(String(format: "%.1f", type.effectivness.fire) + "x").subhead()
+                    }
+                }
+                HStack {
+                    Image("Water")
+                    Spacer()
+                    Text(String(format: "%.1f", type.effectivness.water) + "x").subhead()
+                }
+                HStack {
+                    Image("Grass")
+                    Spacer()
+                    Text(String(format: "%.1f", type.effectivness.grass) + "x").subhead()
+                }
+                HStack {
+                    Image("Electric")
+                    Spacer()
+                    Text(String(format: "%.1f", type.effectivness.electric) + "x").subhead()
+                }
+                HStack {
+                    Image("Psychic")
+                    Spacer()
+                    Text(String(format: "%.1f", type.effectivness.psychic) + "x").subhead()
+                }
+                HStack {
+                    Image("Ice")
+                    Spacer()
+                    Text(String(format: "%.1f", type.effectivness.ice) + "x").subhead()
+                }
+                HStack {
+                    Image("Dragon")
+                    Spacer()
+                    Text(String(format: "%.1f", type.effectivness.dragon) + "x").subhead()
+                }
+                HStack {
+                    Image("Dark")
+                    Spacer()
+                    Text(String(format: "%.1f", type.effectivness.dark) + "x").subhead()
+                }
+                HStack {
+                    Image("Fairy")
+                    Spacer()
+                    Text(String(format: "%.1f", type.effectivness.fairy) + "x").subhead()
+                }
+            }.makeNewLineSection(str: "Effectiveness")
+            /*if(type.strengths.count != 0) {
                 Group {
                     ForEach(type.strengths, id: \.self) { strength in
                         Image(strength)
@@ -56,7 +146,7 @@ struct TypeDetail: View {
                         Image(immune)
                     }
                 }.makeSection(str: "No Affect Against")
-            }
+            }*/
 		}.fixList()
 	}
 }

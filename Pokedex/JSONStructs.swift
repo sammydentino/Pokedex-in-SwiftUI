@@ -91,29 +91,6 @@ struct Name : Codable {
 	}
 }
 
-struct Types : Codable, Identifiable {
-	let id = UUID()
-	let name : String!
-	let immunes : [String]!
-	let weaknesses : [String]!
-	let strengths : [String]!
-
-	enum CodingKeys: String, CodingKey {
-		case name = "name"
-		case immunes = "immunes"
-		case weaknesses = "weaknesses"
-		case strengths = "strengths"
-	}
-
-	init(from decoder: Decoder) throws {
-		let values = try decoder.container(keyedBy: CodingKeys.self)
-		name = try values.decodeIfPresent(String.self, forKey: .name) ?? "N/A"
-		immunes = try values.decodeIfPresent([String].self, forKey: .immunes)
-		weaknesses = try values.decodeIfPresent([String].self, forKey: .weaknesses)
-		strengths = try values.decodeIfPresent([String].self, forKey: .strengths)
-	}
-}
-
 struct Moves : Codable, Identifiable {
 	let id = UUID()
 	let accuracy : Int!
@@ -297,5 +274,133 @@ struct Pokemon: Codable, Identifiable {
         case halfDamageFrom = "Half Damage From"
         case noDamageAgainst = "No Damage Against"
         case noDamageFrom = "No Damage From"
+    }
+}
+
+struct TypeList : Codable {
+    let types : [Type]!
+
+    enum CodingKeys: String, CodingKey {
+        case types = "Types"
+    }
+
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        types = try values.decodeIfPresent([Type].self, forKey: .types)
+    }
+}
+
+struct Type : Codable, Identifiable {
+    let id = UUID()
+    let en : String!
+    let names : Names!
+    let effectivness : Effectivness!
+    let color : String!
+    
+    enum CodingKeys: String, CodingKey {
+        case en = "en"
+        case names = "names"
+        case effectivness = "effectivness"
+        case color = "color"
+    }
+    
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        en = try values.decodeIfPresent(String.self, forKey: .en)
+        names = try values.decodeIfPresent(Names.self, forKey: .names)
+        effectivness = try values.decodeIfPresent(Effectivness.self, forKey: .effectivness)
+        color = try values.decodeIfPresent(String.self, forKey: .color)
+    }
+}
+
+struct Names : Codable {
+    let dk : String!
+    let fr : String!
+    let de : String!
+    let gr : String!
+    let it : String!
+    let pl : String!
+    
+    enum CodingKeys: String, CodingKey {
+        case dk = "dk"
+        case fr = "fr"
+        case de = "de"
+        case gr = "gr"
+        case it = "it"
+        case pl = "pl"
+    }
+    
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        dk = try values.decodeIfPresent(String.self, forKey: .dk)
+        fr = try values.decodeIfPresent(String.self, forKey: .fr)
+        de = try values.decodeIfPresent(String.self, forKey: .de)
+        gr = try values.decodeIfPresent(String.self, forKey: .gr)
+        it = try values.decodeIfPresent(String.self, forKey: .it)
+        pl = try values.decodeIfPresent(String.self, forKey: .pl)
+    }
+}
+
+struct Effectivness : Codable {
+    let normal : Double!
+    let fighting : Double!
+    let flying : Double!
+    let poison : Double!
+    let ground : Double!
+    let rock : Double!
+    let bug : Double!
+    let ghost : Double!
+    let steel : Double!
+    let fire : Double!
+    let water : Double!
+    let grass : Double!
+    let electric : Double!
+    let psychic : Double!
+    let ice : Double!
+    let dragon : Double!
+    let dark : Double!
+    let fairy : Double!
+    
+    enum CodingKeys: String, CodingKey {
+        case normal = "Normal"
+        case fighting = "Fighting"
+        case flying = "Flying"
+        case poison = "Poison"
+        case ground = "Ground"
+        case rock = "Rock"
+        case bug = "Bug"
+        case ghost = "Ghost"
+        case steel = "Steel"
+        case fire = "Fire"
+        case water = "Water"
+        case grass = "Grass"
+        case electric = "Electric"
+        case psychic = "Psychic"
+        case ice = "Ice"
+        case dragon = "Dragon"
+        case dark = "Dark"
+        case fairy = "Fairy"
+    }
+    
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        normal = try values.decodeIfPresent(Double.self, forKey: .normal)
+        fighting = try values.decodeIfPresent(Double.self, forKey: .fighting)
+        flying = try values.decodeIfPresent(Double.self, forKey: .flying)
+        poison = try values.decodeIfPresent(Double.self, forKey: .poison)
+        ground = try values.decodeIfPresent(Double.self, forKey: .ground)
+        rock = try values.decodeIfPresent(Double.self, forKey: .rock)
+        bug = try values.decodeIfPresent(Double.self, forKey: .bug)
+        ghost = try values.decodeIfPresent(Double.self, forKey: .ghost)
+        steel = try values.decodeIfPresent(Double.self, forKey: .steel)
+        fire = try values.decodeIfPresent(Double.self, forKey: .fire)
+        water = try values.decodeIfPresent(Double.self, forKey: .water)
+        grass = try values.decodeIfPresent(Double.self, forKey: .grass)
+        electric = try values.decodeIfPresent(Double.self, forKey: .electric)
+        psychic = try values.decodeIfPresent(Double.self, forKey: .psychic)
+        ice = try values.decodeIfPresent(Double.self, forKey: .ice)
+        dragon = try values.decodeIfPresent(Double.self, forKey: .dragon)
+        dark = try values.decodeIfPresent(Double.self, forKey: .dark)
+        fairy = try values.decodeIfPresent(Double.self, forKey: .fairy)
     }
 }

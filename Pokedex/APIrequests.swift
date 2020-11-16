@@ -46,7 +46,7 @@ class getPokedex : ObservableObject {
 	}
 }
 
-class getItems: ObservableObject {
+/*class getItems: ObservableObject {
 	@Published var items: [Items]!
 	@Published var pokeballs: [Items]!
 	@Published var berries: [Items]!
@@ -100,7 +100,7 @@ class getItems: ObservableObject {
 			}
 		}
 	}
-}
+}*/
 
 class getMoves: ObservableObject {
 	@Published var moves: [Moves]!
@@ -128,23 +128,23 @@ class getMoves: ObservableObject {
 }
 
 class getTypes: ObservableObject {
-	@Published var types: [Types]!
+	@Published var types: [Type]!
 	
 	init() {
 		loadTypes()
 	}
 	
 	func loadTypes() {
-		let urlString = "https://raw.githubusercontent.com/sammydentino/pokemon-type-chart/master/types.json"
-		
-		if let url = URL(string: urlString) {
-			if let d = try? Data(contentsOf: url) {
-				// we're OK to parse!
-				let decoder = JSONDecoder()
-				if let data = try? decoder.decode([Types].self, from: d) {
-					types = data
-				}
-			}
-		}
-	}
+        let urlString = "https://raw.githubusercontent.com/sammydentino/Pokedex/master/types.json"
+        
+        if let url = URL(string: urlString) {
+            if let d = try? Data(contentsOf: url) {
+                // we're OK to parse!
+                let decoder = JSONDecoder()
+                if let data = try? decoder.decode(TypeList.self, from: d) {
+                    types = data.types
+                }
+            }
+        }
+    }
 }

@@ -9,14 +9,13 @@
 import SwiftUI
 
 struct MovesView: View {
-	@ObservedObject var fetch = getMoves()
-	@State private var showingDetail = false
+    let moves: [Moves]!
 	@State private var searchQuery: String = ""
 	var body: some View {
 		VStack(alignment: .leading, spacing: 0) {
 			SearchBar(text: self.$searchQuery).padding(.vertical, 10)
 			List {
-				ForEach(fetch.moves.filter {
+				ForEach(moves.filter {
                     self.searchQuery.isEmpty ? true : "\($0)".lowercased().contains(self.searchQuery.lowercased())
 				}) { item in
 					NavigationLink(destination: MovesDetail(move: item).navigationBarTitle("\(item.ename)")) {

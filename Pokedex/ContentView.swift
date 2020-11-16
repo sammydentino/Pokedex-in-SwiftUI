@@ -13,6 +13,8 @@ import WebKit
 struct ContentView: View {
 	@State var selectedView = 0
 	@ObservedObject var fetch = getPokedex()
+    @ObservedObject var types = getTypes()
+    @ObservedObject var moves = getMoves()
 	@State private var showingDetail = false
 	@State private var searchQuery: String = ""
     var body: some View {
@@ -86,7 +88,7 @@ struct ContentView: View {
 			}.tag(0)
 			NavigationView {
 				VStack(alignment: .leading, spacing: 0) {
-					TypesView().navigationBarTitle("Types")
+                    TypesView(types: types.types).navigationBarTitle("Types")
 				}
 			}.tabItem {
 				Image(systemName: "circle.grid.hex")
@@ -94,20 +96,12 @@ struct ContentView: View {
 			}.tag(1)
             NavigationView {
                 VStack(alignment: .leading, spacing: 0) {
-                    MovesView().navigationBarTitle("Moves")
+                    MovesView(moves: moves.moves).navigationBarTitle("Moves")
                 }
             }.tabItem {
                 Image(systemName: "speedometer")
                 Text("Moves")
             }.tag(2)
-			/*NavigationView {
-				VStack(alignment: .leading, spacing: 0) {
-					ItemsView().navigationBarTitle("Items")
-				}
-			}.tabItem {
-				Image(systemName: "gift")
-				Text("Items")
-			}.tag(3)*/
         }.animation(.default)
 	}
 }
