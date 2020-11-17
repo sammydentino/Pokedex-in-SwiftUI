@@ -27,53 +27,53 @@ struct ContentView: View {
                             Image("Pokemon").padding(.vertical)
                             Spacer()
                         }.makeEmptySection()
-                        NavigationLink(destination: PokedexView(fetch: fetch.pokemon).navigationBarTitle("National Dex")) {
+                        NavigationLink(destination: PokedexView(fetch: fetch.pokemon, fetch2: fetch.poke.pokemon).navigationBarTitle("National Dex")) {
                             Text("All \(fetch.pokemon.count) Pokémon")
                                 .subhead()
                         }.makeSection(str: "National Dex")
                         Group {
-                            NavigationLink(destination: PokedexView(fetch: fetch.Gen1).navigationBarTitle("Kanto Dex")) {
+                            NavigationLink(destination: PokedexView(fetch: fetch.Gen1, fetch2: Array(fetch.poke.pokemon.prefix(151))).navigationBarTitle("Kanto Dex")) {
                                 Text("Kanto").subhead()
                                 Spacer()
                                 Text("\(fetch.Gen1.count) Pokémon").caption().foregroundColor(.secondary)
                             }
-                            NavigationLink(destination: PokedexView(fetch: fetch.Gen2).navigationBarTitle("Johto Dex")) {
+                            NavigationLink(destination: PokedexView(fetch: fetch.Gen2, fetch2: Array((fetch.poke.pokemon.prefix(251)).suffix(100))).navigationBarTitle("Johto Dex")) {
                                 Text("Johto").subhead()
                                 Spacer()
                                 Text("\(fetch.Gen2.count) Pokémon")
                                     .caption().foregroundColor(.secondary)
                             }
-                            NavigationLink(destination: PokedexView(fetch: fetch.Gen3).navigationBarTitle("Hoenn Dex")) {
+                            NavigationLink(destination: PokedexView(fetch: fetch.Gen3, fetch2: Array((fetch.poke.pokemon.prefix(386)).suffix(135))).navigationBarTitle("Hoenn Dex")) {
                                 Text("Hoenn").subhead()
                                 Spacer()
                                 Text("\(fetch.Gen3.count) Pokémon")
                                     .caption().foregroundColor(.secondary)
                             }
-                            NavigationLink(destination: PokedexView(fetch: fetch.Gen4).navigationBarTitle("Sinnoh Dex")) {
+                            NavigationLink(destination: PokedexView(fetch: fetch.Gen4, fetch2: Array((fetch.poke.pokemon.prefix(493)).suffix(107))).navigationBarTitle("Sinnoh Dex")) {
                                 Text("Sinnoh").subhead()
                                 Spacer()
                                 Text("\(fetch.Gen4.count) Pokémon")
                                     .caption().foregroundColor(.secondary)
                             }
-                            NavigationLink(destination: PokedexView(fetch: fetch.Gen5).navigationBarTitle("Unova Dex")) {
+                            NavigationLink(destination: PokedexView(fetch: fetch.Gen5, fetch2: Array((fetch.poke.pokemon.prefix(649)).suffix(156))).navigationBarTitle("Unova Dex")) {
                                 Text("Unova ").subhead()
                                 Spacer()
                                 Text("\(fetch.Gen5.count) Pokémon")
                                     .caption().foregroundColor(.secondary)
                             }
-                            NavigationLink(destination: PokedexView(fetch: fetch.Gen6).navigationBarTitle("Kalos Dex")) {
+                            NavigationLink(destination: PokedexView(fetch: fetch.Gen6, fetch2: Array((fetch.poke.pokemon.prefix(721)).suffix(72))).navigationBarTitle("Kalos Dex")) {
                                 Text("Kalos").subhead()
                                 Spacer()
                                 Text("\(fetch.Gen6.count) Pokémon")
                                     .caption().foregroundColor(.secondary)
                             }
-                            NavigationLink(destination: PokedexView(fetch: fetch.Gen7).navigationBarTitle("Alola Dex")) {
+                            NavigationLink(destination: PokedexView(fetch: fetch.Gen7, fetch2: Array((fetch.poke.pokemon.prefix(809)).suffix(88))).navigationBarTitle("Alola Dex")) {
                                 Text("Alola").subhead()
                                 Spacer()
                                 Text("\(fetch.Gen7.count) Pokémon")
                                     .caption().foregroundColor(.secondary)
                             }
-                            NavigationLink(destination: PokedexView(fetch: fetch.Gen8).navigationBarTitle("Galar Dex")) {
+                            NavigationLink(destination: PokedexView(fetch: fetch.Gen8, fetch2: Array(fetch.poke.pokemon.suffix(84))).navigationBarTitle("Galar Dex")) {
                                 Text("Galar").subhead()
                                 Spacer()
                                 Text("\(fetch.Gen8.count) Pokémon")

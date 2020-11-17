@@ -18,9 +18,12 @@ class getPokedex : ObservableObject {
 	@Published var Gen6: [Pokedex]!
 	@Published var Gen7: [Pokedex]!
 	@Published var Gen8: [Pokedex]!
+    @Published var poke: Welcome!
 	
 	init() {
 		loadPokedex()
+        loadPokemon()
+        print(poke.pokemon.count)
 		Gen1 = Array(pokemon.prefix(151))
 		Gen2 = Array((pokemon.prefix(251)).suffix(100))
 		Gen3 = Array((pokemon.prefix(386)).suffix(135))
@@ -44,6 +47,20 @@ class getPokedex : ObservableObject {
 			}
 		}
 	}
+    
+    func loadPokemon() {
+        let urlString = "https://raw.githubusercontent.com/sammydentino/Pokedex/master/natdex.json"
+        
+        if let url = URL(string: urlString) {
+            if let d = try? Data(contentsOf: url) {
+                // we're OK to parse!
+                let decoder = JSONDecoder()
+                if let data = try? decoder.decode(Welcome.self, from: d) {
+                    poke = data
+                }
+            }
+        }
+    }
 }
 
 /*class getItems: ObservableObject {

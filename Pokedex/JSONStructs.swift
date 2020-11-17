@@ -240,24 +240,59 @@ struct Locs : Codable {
 }
 */
 
-struct Pokemon: Codable, Identifiable {
-    var id = UUID()
-    var name, pokemonDescription, sprites: String
-    var height, weight: Double
-    var baseExperience, hp, attack, defense: Int
-    var specialAttack, specialDefense, speed: Int
-    var games, moves, types, abilities: String
-    var holdingItem, doubleDamageAgainst, doubleDamageFrom, halfDamageAgainst: String
-    var halfDamageFrom, noDamageAgainst, noDamageFrom: String
+struct Results : Codable {
+    var pokemon : [Pokemon]
 
     enum CodingKeys: String, CodingKey {
+
+        case pokemon = "Pokemon"
+    }
+
+}
+
+struct Pokemon : Codable, Identifiable {
+    /*private static var idSequence = sequence(first: 1, next: {$0 + 1})
+    let id: Int*/
+    let id = UUID()
+    let name : String!
+    let description : String!
+    var sprites : String!
+    let height : Double!
+    let weight : Double!
+    let HP : Int!
+    let attack : Int!
+    let defense : Int!
+    let specialAttack : Int!
+    let specialDefense : Int!
+    let speed : Int!
+    let games : String!
+    let moves : String!
+    var movesArr: [String]!
+    let types : String!
+    var typesArr: [String]!
+    let abilities : String!
+    var abilitiesArr: [String]!
+    let holdingItem : String!
+    let doubleDamageAgainst : String!
+    var doubleDamageAgainstArr: [String]!
+    let doubleDamageFrom : String!
+    var doubleDamageFromArr: [String]!
+    let halfDamageAgainst : String!
+    var halfDamageAgainstArr: [String]!
+    let halfDamageFrom : String!
+    var halfDamageFromArr: [String]!
+    let noDamageAgainst : String!
+    var noDamageAgainstArr: [String]!
+    let noDamageFrom : String!
+    var noDamageFromArr: [String]!
+    
+    enum CodingKeys: String, CodingKey {
         case name = "Name"
-        case pokemonDescription = "Description"
+        case description = "Description"
         case sprites = "Sprites"
         case height = "Height"
         case weight = "Weight"
-        case baseExperience = "Base Experience"
-        case hp = "HP"
+        case HP = "HP"
         case attack = "Attack"
         case defense = "Defense"
         case specialAttack = "Special Attack"
@@ -275,6 +310,111 @@ struct Pokemon: Codable, Identifiable {
         case noDamageAgainst = "No Damage Against"
         case noDamageFrom = "No Damage From"
     }
+    
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        //id = Pokemon.idSequence.next()!
+        name = try values.decodeIfPresent(String.self, forKey: .name) ?? "N/A"
+        description = try values.decodeIfPresent(String.self, forKey: .description) ?? "N/A"
+        sprites = try values.decodeIfPresent(String.self, forKey: .sprites) ?? "N/A"
+        height = try values.decodeIfPresent(Double.self, forKey: .height) ?? 0.0
+        weight = try values.decodeIfPresent(Double.self, forKey: .weight) ?? 0.0
+        HP = try values.decodeIfPresent(Int.self, forKey: .HP) ?? 0
+        attack = try values.decodeIfPresent(Int.self, forKey: .attack) ?? 0
+        defense = try values.decodeIfPresent(Int.self, forKey: .defense) ?? 0
+        specialAttack = try values.decodeIfPresent(Int.self, forKey: .specialAttack) ?? 0
+        specialDefense = try values.decodeIfPresent(Int.self, forKey: .specialDefense) ?? 0
+        speed = try values.decodeIfPresent(Int.self, forKey: .speed) ?? 0
+        games = try values.decodeIfPresent(String.self, forKey: .games) ?? "N/A"
+        moves = try values.decodeIfPresent(String.self, forKey: .moves) ?? "N/A"
+        types = try values.decodeIfPresent(String.self, forKey: .types) ?? "N/A"
+        abilities = try values.decodeIfPresent(String.self, forKey: .abilities) ?? "N/A"
+        holdingItem = try values.decodeIfPresent(String.self, forKey: .holdingItem) ?? "N/A"
+        doubleDamageAgainst = try values.decodeIfPresent(String.self, forKey: .doubleDamageAgainst) ?? "N/A"
+        doubleDamageFrom = try values.decodeIfPresent(String.self, forKey: .doubleDamageFrom) ?? "N/A"
+        halfDamageAgainst = try values.decodeIfPresent(String.self, forKey: .halfDamageAgainst) ?? "N/A"
+        halfDamageFrom = try values.decodeIfPresent(String.self, forKey: .halfDamageFrom) ?? "N/A"
+        noDamageAgainst = try values.decodeIfPresent(String.self, forKey: .noDamageAgainst) ?? "N/A"
+        noDamageFrom = try values.decodeIfPresent(String.self, forKey: .noDamageFrom) ?? "N/A"
+        movesArr = moves.components(separatedBy: ",")
+        typesArr = types.components(separatedBy: ",")
+        abilitiesArr = abilities.components(separatedBy: ",")
+        doubleDamageAgainstArr = doubleDamageAgainst.components(separatedBy: ",")
+        doubleDamageFromArr = doubleDamageFrom.components(separatedBy: ",")
+        halfDamageAgainstArr = halfDamageAgainst.components(separatedBy: ",")
+        halfDamageFromArr = halfDamageFrom.components(separatedBy: ",")
+        noDamageAgainstArr = noDamageAgainst.components(separatedBy: ",")
+        noDamageFromArr = noDamageFrom.components(separatedBy: ",")
+        sprites = sprites.components(separatedBy: ".")[0]
+    }
+}
+
+struct Welcome: Codable {
+    let pokemon: [Pokemons]
+
+    enum CodingKeys: String, CodingKey {
+        case pokemon = "Pokemon"
+    }
+}
+
+// MARK: - Pokemon
+struct Pokemons: Codable, Identifiable {
+    let id = UUID()
+    let nationalNumber: Int
+    let pokemon: String
+    let type1, type2: String
+    let normal, fire, water, electric: Double
+    let grass, ice, fighting, poison: Double
+    let ground, flying, psychic, bug: Double
+    let rock, ghost, dragon, dark: Double
+    let steel, fairy: Double
+
+    enum CodingKeys: String, CodingKey {
+        case nationalNumber = "NationalNumber"
+        case pokemon = "Pokemon"
+        case type1 = "Type_1"
+        case type2 = "Type_2"
+        case normal = "Normal"
+        case fire = "Fire"
+        case water = "Water"
+        case electric = "Electric"
+        case grass = "Grass"
+        case ice = "Ice"
+        case fighting = "Fighting"
+        case poison = "Poison"
+        case ground = "Ground"
+        case flying = "Flying"
+        case psychic = "Psychic"
+        case bug = "Bug"
+        case rock = "Rock"
+        case ghost = "Ghost"
+        case dragon = "Dragon"
+        case dark = "Dark"
+        case steel = "Steel"
+        case fairy = "Fairy"
+    }
+}
+
+enum TypeEnum: String, Codable {
+    case bug = "Bug"
+    case dark = "Dark"
+    case dragon = "Dragon"
+    case electric = "Electric"
+    case fairy = "Fairy"
+    case fighting = "Fighting"
+    case fire = "Fire"
+    case flying = "Flying"
+    case ghost = "Ghost"
+    case grass = "Grass"
+    case ground = "Ground"
+    case ice = "Ice"
+    case none = "None"
+    case normal = "Normal"
+    case poison = "Poison"
+    case psychic = "Psychic"
+    case rock = "Rock"
+    case steel = "Steel"
+    case water = "Water"
 }
 
 struct TypeList : Codable {
