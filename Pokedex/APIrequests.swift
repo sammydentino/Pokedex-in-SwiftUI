@@ -9,22 +9,22 @@
 import SwiftUI
 
 class getPokedex : ObservableObject {
-	@Published var pokemon : [Pokedex]!
-	@Published var Gen1: [Pokedex]!
-	@Published var Gen2: [Pokedex]!
-	@Published var Gen3: [Pokedex]!
-	@Published var Gen4: [Pokedex]!
-	@Published var Gen5: [Pokedex]!
-	@Published var Gen6: [Pokedex]!
-	@Published var Gen7: [Pokedex]!
-	@Published var Gen8: [Pokedex]!
+    @Published var pokemon: [Pokemon]!
+	@Published var Gen1: [Pokemon]!
+	@Published var Gen2: [Pokemon]!
+	@Published var Gen3: [Pokemon]!
+	@Published var Gen4: [Pokemon]!
+	@Published var Gen5: [Pokemon]!
+	@Published var Gen6: [Pokemon]!
+	@Published var Gen7: [Pokemon]!
+	@Published var Gen8: [Pokemon]!
     @Published var poke: Welcome!
-	
+    
+	//https://raw.githubusercontent.com/sammydentino/Pokedex/master/poke.json
 	init() {
-		loadPokedex()
-        loadPokemon()
-        print(poke.pokemon.count)
-		Gen1 = Array(pokemon.prefix(151))
+		loadPokemon()
+        loadPoke()
+        Gen1 = Array(pokemon.prefix(151))
 		Gen2 = Array((pokemon.prefix(251)).suffix(100))
 		Gen3 = Array((pokemon.prefix(386)).suffix(135))
 		Gen4 = Array((pokemon.prefix(493)).suffix(107))
@@ -34,21 +34,7 @@ class getPokedex : ObservableObject {
 		Gen8 = Array(pokemon.suffix(84))
 	}
 	
-	func loadPokedex() {
-		let urlString = "https://raw.githubusercontent.com/sammydentino/pokemon.json/master/pokedex.json"
-		
-		if let url = URL(string: urlString) {
-			if let d = try? Data(contentsOf: url) {
-				// we're OK to parse!
-				let decoder = JSONDecoder()
-				if let data = try? decoder.decode([Pokedex].self, from: d) {
-					pokemon = data
-				}
-			}
-		}
-	}
-    
-    func loadPokemon() {
+	func loadPoke() {
         let urlString = "https://raw.githubusercontent.com/sammydentino/Pokedex/master/natdex.json"
         
         if let url = URL(string: urlString) {
@@ -57,6 +43,20 @@ class getPokedex : ObservableObject {
                 let decoder = JSONDecoder()
                 if let data = try? decoder.decode(Welcome.self, from: d) {
                     poke = data
+                }
+            }
+        }
+    }
+    
+    func loadPokemon() {
+        let urlString = "https://raw.githubusercontent.com/sammydentino/Pokedex/master/poke.json"
+        
+        if let url = URL(string: urlString) {
+            if let d = try? Data(contentsOf: url) {
+                // we're OK to parse!
+                let decoder = JSONDecoder()
+                if let data = try? decoder.decode([Pokemon].self, from: d) {
+                    pokemon = data
                 }
             }
         }
