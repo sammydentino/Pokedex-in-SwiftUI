@@ -18,6 +18,8 @@ struct PokemonView: View {
             List {
                 Group {
                     HStack {
+                        Text(pokemon.classification).subhead()
+                        Spacer()
                         Image(poke.type1).resizable()
                             .aspectRatio(contentMode: .fill).frame(width: 40, height: 17.5)
                         if(poke.type2 != "None") {
@@ -49,32 +51,15 @@ struct PokemonView: View {
                 }.makeSection(str: "Regular & Shiny Forms")
                 Group {
                     HStack {
-                        Text("♂").foregroundColor(.blue).subhead()
+                        Text("♂").foregroundColor(.blue)
                         Text(String(format: "%.1f",pokemon.maleRatio) + "%").subhead()
                         Spacer()
                         Divider()
                         Spacer()
                         Text(String(format: "%.1f",pokemon.femaleRatio) + "%").subhead()
-                        Text("♀").foregroundColor(.pink).subhead()
+                        Text("♀").foregroundColor(.pink)
                     }
                 }.makeSection(str: "Gender")
-                /*Group {
-                    VStack(alignment: .leading, spacing: 0) {
-                        Spacer()
-                        Text(pokemon.primaryAbility).subhead()
-                        Spacer()
-                        Text(pokemon.primaryAbilityDescription).subhead()
-                        Spacer()
-                        if(pokemon.secondaryAbility != "") {
-                            Divider()
-                            Spacer()
-                            Text(pokemon.secondaryAbility).subhead()
-                            if(pokemon.secondaryAbilityDescription != "") {
-                                Text(pokemon.secondaryAbilityDescription).subhead()
-                            }
-                        }
-                    }
-                }.makeSection(str: "Abilities")*/
                 Group {
                     HStack {
                         Text("HP").font(.subheadline).bold()
@@ -200,7 +185,19 @@ struct PokemonView: View {
                         Spacer()
                         Text(String(format: "%.1f", poke.fairy) + "x").subhead()
                     }
-                }.makeSection(str: "Effectiveness")
+                }.makeSection(str: "Strengths & Weaknesses")
+                Group {
+                    HStack {
+                        Text("Growth Rate").subhead()
+                        Spacer()
+                        Text(pokemon.experienceGrowth.rawValue).subhead()
+                    }
+                    HStack {
+                        Text("Max EXP").subhead()
+                        Spacer()
+                        Text("\(pokemon.experienceGrowthTotal)").subhead()
+                    }
+                }.makeSection(str: "Experience Points")
             }.fixList()
         }
     }

@@ -24,6 +24,9 @@ class getPokedex : ObservableObject {
 	init() {
 		loadPokemon()
         loadPoke()
+        pokemon = pokemon.sorted {
+            $0.pokedexNumber < $1.pokedexNumber
+        }
         Gen1 = Array(pokemon.prefix(151))
 		Gen2 = Array((pokemon.prefix(251)).suffix(100))
 		Gen3 = Array((pokemon.prefix(386)).suffix(135))
