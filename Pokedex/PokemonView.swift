@@ -149,186 +149,91 @@ struct PokemonView: View {
                     }.makeSection(str: "Hidden Ability")
                 }
                 Group {
-                    if #available(iOS 14.0, *) {
-                        VStack(spacing: 0) {
-                            Group {
-                                HStack {
-                                    Image("Normal").padding(.vertical, 10)
-                                    Spacer()
-                                    Text(String(format: "%.1f", poke.normal) + "x").subhead().padding(.vertical, 10)
-                                    Divider().padding(.horizontal)
-                                    Image("Fighting").padding(.vertical, 10)
-                                    Spacer()
-                                    Text(String(format: "%.1f", poke.fighting) + "x").subhead().padding(.vertical, 10)
-                                }
-                                HStack {
-                                    Image("Flying").padding(.vertical, 10)
-                                    Spacer()
-                                    Text(String(format: "%.1f", poke.flying) + "x").subhead().padding(.vertical, 10)
-                                    Divider().padding(.horizontal)
-                                    Image("Poison").padding(.vertical, 10)
-                                    Spacer()
-                                    Text(String(format: "%.1f", poke.poison) + "x").subhead().padding(.vertical, 10)
-                                }
-                                HStack {
-                                    Image("Ground").padding(.vertical, 10)
-                                    Spacer()
-                                    Text(String(format: "%.1f", poke.ground) + "x").subhead().padding(.vertical, 10)
-                                    Divider().padding(.horizontal)
-                                    Image("Rock").padding(.vertical, 10)
-                                    Spacer()
-                                    Text(String(format: "%.1f", poke.rock) + "x").subhead().padding(.vertical, 10)
-                                }
-                                HStack {
-                                    Image("Bug").padding(.vertical, 10)
-                                    Spacer()
-                                    Text(String(format: "%.1f", poke.bug) + "x").subhead().padding(.vertical, 10)
-                                    Divider().padding(.horizontal)
-                                    Image("Ghost").padding(.vertical, 10)
-                                    Spacer()
-                                    Text(String(format: "%.1f", poke.ghost) + "x").subhead().padding(.vertical, 10)
-                                }
-                                HStack {
-                                    Image("Steel").padding(.vertical, 10)
-                                    Spacer()
-                                    Text(String(format: "%.1f", poke.steel) + "x").subhead().padding(.vertical, 10)
-                                    Divider().padding(.horizontal)
-                                    Image("Fire").padding(.vertical, 10)
-                                    Spacer()
-                                    Text(String(format: "%.1f", poke.fire) + "x").subhead().padding(.vertical, 10)
-                                }
-                            }
-                            Group {
-                                HStack {
-                                    Image("Water").padding(.vertical, 10)
-                                    Spacer()
-                                    Text(String(format: "%.1f", poke.water) + "x").subhead().padding(.vertical, 10)
-                                    Divider().padding(.horizontal)
-                                    Image("Grass").padding(.vertical, 10)
-                                    Spacer()
-                                    Text(String(format: "%.1f", poke.grass) + "x").subhead().padding(.vertical, 10)
-                                }
-                                HStack {
-                                    Image("Electric").padding(.vertical, 10)
-                                    Spacer()
-                                    Text(String(format: "%.1f", poke.electric) + "x").subhead().padding(.vertical, 10)
-                                    Divider().padding(.horizontal)
-                                    Image("Psychic").padding(.vertical, 10)
-                                    Spacer()
-                                    Text(String(format: "%.1f", poke.psychic) + "x").subhead().padding(.vertical, 10)
-                                }
-                                HStack {
-                                    Image("Ice").padding(.vertical, 10)
-                                    Spacer()
-                                    Text(String(format: "%.1f", poke.ice) + "x").subhead().padding(.vertical, 10)
-                                    Divider().padding(.horizontal)
-                                    Image("Dragon").padding(.vertical, 10)
-                                    Spacer()
-                                    Text(String(format: "%.1f", poke.dragon) + "x").subhead().padding(.vertical, 10)
-                                }
-                                HStack {
-                                    Image("Dark").padding(.vertical, 10)
-                                    Spacer()
-                                    Text(String(format: "%.1f", poke.dark) + "x").subhead().padding(.vertical, 10)
-                                    Divider().padding(.horizontal)
-                                    Image("Fairy").padding(.vertical, 10)
-                                    Spacer()
-                                    Text(String(format: "%.1f", poke.fairy) + "x").subhead().padding(.vertical, 10)
-                                }
-                            }
-                        }
-                    } else {
+                    VStack(spacing: 0) {
                         Group {
                             HStack {
-                                Image("Normal")
+                                Image("Normal").padding(.vertical, 10)
                                 Spacer()
-                                Text(String(format: "%.1f", poke.normal) + "x").subhead()
+                                Text(String(format: "%.1f", poke.normal) + "x").subhead().padding(.vertical, 10)
+                                Divider().padding(.horizontal)
+                                Image("Fighting").padding(.vertical, 10)
+                                Spacer()
+                                Text(String(format: "%.1f", poke.fighting) + "x").subhead().padding(.vertical, 10)
                             }
                             HStack {
-                                Image("Fighting")
+                                Image("Flying").padding(.vertical, 10)
                                 Spacer()
-                                Text(String(format: "%.1f", poke.fighting) + "x").subhead()
+                                Text(String(format: "%.1f", poke.flying) + "x").subhead().padding(.vertical, 10)
+                                Divider().padding(.horizontal)
+                                Image("Poison").padding(.vertical, 10)
+                                Spacer()
+                                Text(String(format: "%.1f", poke.poison) + "x").subhead().padding(.vertical, 10)
                             }
                             HStack {
-                                Image("Flying")
+                                Image("Ground").padding(.vertical, 10)
                                 Spacer()
-                                Text(String(format: "%.1f", poke.flying) + "x").subhead()
+                                Text(String(format: "%.1f", poke.ground) + "x").subhead().padding(.vertical, 10)
+                                Divider().padding(.horizontal)
+                                Image("Rock").padding(.vertical, 10)
+                                Spacer()
+                                Text(String(format: "%.1f", poke.rock) + "x").subhead().padding(.vertical, 10)
                             }
                             HStack {
-                                Image("Poison")
+                                Image("Bug").padding(.vertical, 10)
                                 Spacer()
-                                Text(String(format: "%.1f", poke.poison) + "x").subhead()
+                                Text(String(format: "%.1f", poke.bug) + "x").subhead().padding(.vertical, 10)
+                                Divider().padding(.horizontal)
+                                Image("Ghost").padding(.vertical, 10)
+                                Spacer()
+                                Text(String(format: "%.1f", poke.ghost) + "x").subhead().padding(.vertical, 10)
                             }
                             HStack {
-                                Image("Ground")
+                                Image("Steel").padding(.vertical, 10)
                                 Spacer()
-                                Text(String(format: "%.1f", poke.ground) + "x").subhead()
-                            }
-                            HStack {
-                                Image("Rock")
+                                Text(String(format: "%.1f", poke.steel) + "x").subhead().padding(.vertical, 10)
+                                Divider().padding(.horizontal)
+                                Image("Fire").padding(.vertical, 10)
                                 Spacer()
-                                Text(String(format: "%.1f", poke.rock) + "x").subhead()
-                            }
-                            HStack {
-                                Image("Bug")
-                                Spacer()
-                                Text(String(format: "%.1f", poke.bug) + "x").subhead()
-                            }
-                            HStack {
-                                Image("Ghost")
-                                Spacer()
-                                Text(String(format: "%.1f", poke.ghost) + "x").subhead()
-                            }
-                            HStack {
-                                Image("Steel")
-                                Spacer()
-                                Text(String(format: "%.1f", poke.steel) + "x").subhead()
-                            }
-                            HStack {
-                                Image("Fire")
-                                Spacer()
-                                Text(String(format: "%.1f", poke.fire) + "x").subhead()
+                                Text(String(format: "%.1f", poke.fire) + "x").subhead().padding(.vertical, 10)
                             }
                         }
-                        HStack {
-                            Image("Water")
-                            Spacer()
-                            Text(String(format: "%.1f", poke.water) + "x").subhead()
-                        }
-                        HStack {
-                            Image("Grass")
-                            Spacer()
-                            Text(String(format: "%.1f", poke.grass) + "x").subhead()
-                        }
-                        HStack {
-                            Image("Electric")
-                            Spacer()
-                            Text(String(format: "%.1f", poke.electric) + "x").subhead()
-                        }
-                        HStack {
-                            Image("Psychic")
-                            Spacer()
-                            Text(String(format: "%.1f", poke.psychic) + "x").subhead()
-                        }
-                        HStack {
-                            Image("Ice")
-                            Spacer()
-                            Text(String(format: "%.1f", poke.ice) + "x").subhead()
-                        }
-                        HStack {
-                            Image("Dragon")
-                            Spacer()
-                            Text(String(format: "%.1f", poke.dragon) + "x").subhead()
-                        }
-                        HStack {
-                            Image("Dark")
-                            Spacer()
-                            Text(String(format: "%.1f", poke.dark) + "x").subhead()
-                        }
-                        HStack {
-                            Image("Fairy")
-                            Spacer()
-                            Text(String(format: "%.1f", poke.fairy) + "x").subhead()
+                        Group {
+                            HStack {
+                                Image("Water").padding(.vertical, 10)
+                                Spacer()
+                                Text(String(format: "%.1f", poke.water) + "x").subhead().padding(.vertical, 10)
+                                Divider().padding(.horizontal)
+                                Image("Grass").padding(.vertical, 10)
+                                Spacer()
+                                Text(String(format: "%.1f", poke.grass) + "x").subhead().padding(.vertical, 10)
+                            }
+                            HStack {
+                                Image("Electric").padding(.vertical, 10)
+                                Spacer()
+                                Text(String(format: "%.1f", poke.electric) + "x").subhead().padding(.vertical, 10)
+                                Divider().padding(.horizontal)
+                                Image("Psychic").padding(.vertical, 10)
+                                Spacer()
+                                Text(String(format: "%.1f", poke.psychic) + "x").subhead().padding(.vertical, 10)
+                            }
+                            HStack {
+                                Image("Ice").padding(.vertical, 10)
+                                Spacer()
+                                Text(String(format: "%.1f", poke.ice) + "x").subhead().padding(.vertical, 10)
+                                Divider().padding(.horizontal)
+                                Image("Dragon").padding(.vertical, 10)
+                                Spacer()
+                                Text(String(format: "%.1f", poke.dragon) + "x").subhead().padding(.vertical, 10)
+                            }
+                            HStack {
+                                Image("Dark").padding(.vertical, 10)
+                                Spacer()
+                                Text(String(format: "%.1f", poke.dark) + "x").subhead().padding(.vertical, 10)
+                                Divider().padding(.horizontal)
+                                Image("Fairy").padding(.vertical, 10)
+                                Spacer()
+                                Text(String(format: "%.1f", poke.fairy) + "x").subhead().padding(.vertical, 10)
+                            }
                         }
                     }
                 }.makeSection(str: "Strengths & Weaknesses")

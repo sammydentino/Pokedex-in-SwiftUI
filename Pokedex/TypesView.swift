@@ -32,100 +32,96 @@ struct TypeDetail: View {
 	
 	var body: some View {
 		List {
+            Image(type.en).padding(.vertical, 10).makeNewLineSection(str: "Type Icon")
             Group {
-                Group {
-                    HStack {
-                        Image("Normal")
-                        Spacer()
-                        Text(String(format: "%.1f", type.effectivness.normal) + "x").subhead()
+                VStack(spacing: 0) {
+                    Group {
+                        HStack {
+                            Image("Normal").padding(.vertical, 10)
+                            Spacer()
+                            Text(String(format: "%.1f", type.effectivness.normal) + "x").subhead().padding(.vertical, 10)
+                            Divider().padding(.horizontal)
+                            Image("Fighting").padding(.vertical, 10)
+                            Spacer()
+                            Text(String(format: "%.1f", type.effectivness.fighting) + "x").subhead().padding(.vertical, 10)
+                        }
+                        HStack {
+                            Image("Flying").padding(.vertical, 10)
+                            Spacer()
+                            Text(String(format: "%.1f", type.effectivness.flying) + "x").subhead().padding(.vertical, 10)
+                            Divider().padding(.horizontal)
+                            Image("Poison").padding(.vertical, 10)
+                            Spacer()
+                            Text(String(format: "%.1f", type.effectivness.poison) + "x").subhead().padding(.vertical, 10)
+                        }
+                        HStack {
+                            Image("Ground").padding(.vertical, 10)
+                            Spacer()
+                            Text(String(format: "%.1f", type.effectivness.ground) + "x").subhead().padding(.vertical, 10)
+                            Divider().padding(.horizontal)
+                            Image("Rock").padding(.vertical, 10)
+                            Spacer()
+                            Text(String(format: "%.1f", type.effectivness.rock) + "x").subhead().padding(.vertical, 10)
+                        }
+                        HStack {
+                            Image("Bug").padding(.vertical, 10)
+                            Spacer()
+                            Text(String(format: "%.1f", type.effectivness.bug) + "x").subhead().padding(.vertical, 10)
+                            Divider().padding(.horizontal)
+                            Image("Ghost").padding(.vertical, 10)
+                            Spacer()
+                            Text(String(format: "%.1f", type.effectivness.ghost) + "x").subhead().padding(.vertical, 10)
+                        }
+                        HStack {
+                            Image("Steel").padding(.vertical, 10)
+                            Spacer()
+                            Text(String(format: "%.1f", type.effectivness.steel) + "x").subhead().padding(.vertical, 10)
+                            Divider().padding(.horizontal)
+                            Image("Fire").padding(.vertical, 10)
+                            Spacer()
+                            Text(String(format: "%.1f", type.effectivness.fire) + "x").subhead().padding(.vertical, 10)
+                        }
                     }
-                    HStack {
-                        Image("Fighting")
-                        Spacer()
-                        Text(String(format: "%.1f", type.effectivness.fighting) + "x").subhead()
-                    }
-                    HStack {
-                        Image("Flying")
-                        Spacer()
-                        Text(String(format: "%.1f", type.effectivness.flying) + "x").subhead()
-                    }
-                    HStack {
-                        Image("Poison")
-                        Spacer()
-                        Text(String(format: "%.1f", type.effectivness.poison) + "x").subhead()
-                    }
-                    HStack {
-                        Image("Ground")
-                        Spacer()
-                        Text(String(format: "%.1f", type.effectivness.ground) + "x").subhead()
-                    }
-                    HStack {
-                        Image("Rock")
-                        Spacer()
-                        Text(String(format: "%.1f", type.effectivness.rock) + "x").subhead()
-                    }
-                    HStack {
-                        Image("Bug")
-                        Spacer()
-                        Text(String(format: "%.1f", type.effectivness.bug) + "x").subhead()
-                    }
-                    HStack {
-                        Image("Ghost")
-                        Spacer()
-                        Text(String(format: "%.1f", type.effectivness.ghost) + "x").subhead()
-                    }
-                    HStack {
-                        Image("Steel")
-                        Spacer()
-                        Text(String(format: "%.1f", type.effectivness.steel) + "x").subhead()
-                    }
-                    HStack {
-                        Image("Fire")
-                        Spacer()
-                        Text(String(format: "%.1f", type.effectivness.fire) + "x").subhead()
+                    Group {
+                        HStack {
+                            Image("Water").padding(.vertical, 10)
+                            Spacer()
+                            Text(String(format: "%.1f", type.effectivness.water) + "x").subhead().padding(.vertical, 10)
+                            Divider().padding(.horizontal)
+                            Image("Grass").padding(.vertical, 10)
+                            Spacer()
+                            Text(String(format: "%.1f", type.effectivness.grass) + "x").subhead().padding(.vertical, 10)
+                        }
+                        HStack {
+                            Image("Electric").padding(.vertical, 10)
+                            Spacer()
+                            Text(String(format: "%.1f", type.effectivness.electric) + "x").subhead().padding(.vertical, 10)
+                            Divider().padding(.horizontal)
+                            Image("Psychic").padding(.vertical, 10)
+                            Spacer()
+                            Text(String(format: "%.1f", type.effectivness.psychic) + "x").subhead().padding(.vertical, 10)
+                        }
+                        HStack {
+                            Image("Ice").padding(.vertical, 10)
+                            Spacer()
+                            Text(String(format: "%.1f", type.effectivness.ice) + "x").subhead().padding(.vertical, 10)
+                            Divider().padding(.horizontal)
+                            Image("Dragon").padding(.vertical, 10)
+                            Spacer()
+                            Text(String(format: "%.1f", type.effectivness.dragon) + "x").subhead().padding(.vertical, 10)
+                        }
+                        HStack {
+                            Image("Dark").padding(.vertical, 10)
+                            Spacer()
+                            Text(String(format: "%.1f", type.effectivness.dark) + "x").subhead().padding(.vertical, 10)
+                            Divider().padding(.horizontal)
+                            Image("Fairy").padding(.vertical, 10)
+                            Spacer()
+                            Text(String(format: "%.1f", type.effectivness.fairy) + "x").subhead().padding(.vertical, 10)
+                        }
                     }
                 }
-                HStack {
-                    Image("Water")
-                    Spacer()
-                    Text(String(format: "%.1f", type.effectivness.water) + "x").subhead()
-                }
-                HStack {
-                    Image("Grass")
-                    Spacer()
-                    Text(String(format: "%.1f", type.effectivness.grass) + "x").subhead()
-                }
-                HStack {
-                    Image("Electric")
-                    Spacer()
-                    Text(String(format: "%.1f", type.effectivness.electric) + "x").subhead()
-                }
-                HStack {
-                    Image("Psychic")
-                    Spacer()
-                    Text(String(format: "%.1f", type.effectivness.psychic) + "x").subhead()
-                }
-                HStack {
-                    Image("Ice")
-                    Spacer()
-                    Text(String(format: "%.1f", type.effectivness.ice) + "x").subhead()
-                }
-                HStack {
-                    Image("Dragon")
-                    Spacer()
-                    Text(String(format: "%.1f", type.effectivness.dragon) + "x").subhead()
-                }
-                HStack {
-                    Image("Dark")
-                    Spacer()
-                    Text(String(format: "%.1f", type.effectivness.dark) + "x").subhead()
-                }
-                HStack {
-                    Image("Fairy")
-                    Spacer()
-                    Text(String(format: "%.1f", type.effectivness.fairy) + "x").subhead()
-                }
-            }.makeNewLineSection(str: "Effectiveness")
+            }.makeSection(str: "Effectiveness")
             /*if(type.strengths.count != 0) {
                 Group {
                     ForEach(type.strengths, id: \.self) { strength in
