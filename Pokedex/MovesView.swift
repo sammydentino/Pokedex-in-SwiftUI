@@ -13,11 +13,8 @@ struct MovesView: View {
 	@State private var searchQuery: String = ""
 	var body: some View {
 		VStack(alignment: .leading, spacing: 0) {
-			SearchBar(text: self.$searchQuery).padding(.vertical, 10)
 			List {
-				ForEach(moves.filter {
-                    self.searchQuery.isEmpty ? true : "\($0)".lowercased().contains(self.searchQuery.lowercased())
-				}) { item in
+				ForEach(moves) { item in
 					NavigationLink(destination: MovesDetail(move: item).navigationBarTitle("\(item.ename)")) {
                         HStack {
                             Text("\(item.ename)").font(.subheadline).bold()
@@ -25,7 +22,7 @@ struct MovesView: View {
                             Image(item.type)
                         }
 					}
-				}
+                }.makeEmptySection()
 			}.fixList()
 		}
 	}
