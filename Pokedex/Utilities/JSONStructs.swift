@@ -194,44 +194,6 @@ struct Pokemons: Codable, Identifiable {
     }
 }
 
-struct Moves : Codable, Identifiable {
-	let id = UUID()
-	let accuracy : Int!
-	let category : String!
-	let cname : String!
-	let ename : String!
-	let moveid : Int!
-	let jname : String!
-	let power : Int!
-	let pp : Int!
-	let type : String!
-
-	enum CodingKeys: String, CodingKey {
-		case accuracy = "accuracy"
-		case category = "category"
-		case cname = "cname"
-		case ename = "ename"
-		case moveid = "id"
-		case jname = "jname"
-		case power = "power"
-		case pp = "pp"
-		case type = "type"
-	}
-
-	init(from decoder: Decoder) throws {
-		let values = try decoder.container(keyedBy: CodingKeys.self)
-		accuracy = try values.decodeIfPresent(Int.self, forKey: .accuracy) ?? 0
-		category = try values.decodeIfPresent(String.self, forKey: .category) ?? "N/A"
-		cname = try values.decodeIfPresent(String.self, forKey: .cname) ?? "N/A"
-		ename = try values.decodeIfPresent(String.self, forKey: .ename) ?? "N/A"
-		moveid = try values.decodeIfPresent(Int.self, forKey: .moveid) ?? 0
-		jname = try values.decodeIfPresent(String.self, forKey: .jname) ?? "N/A"
-		power = try values.decodeIfPresent(Int.self, forKey: .power) ?? 0
-		pp = try values.decodeIfPresent(Int.self, forKey: .pp) ?? 0
-		type = try values.decodeIfPresent(String.self, forKey: .type) ?? "N/A"
-	}
-}
-
 struct Items : Codable, Identifiable {
 	let id = UUID()
 	let itemid : Int!
@@ -397,4 +359,77 @@ struct Effectivness : Codable {
         dark = try values.decodeIfPresent(Double.self, forKey: .dark)
         fairy = try values.decodeIfPresent(Double.self, forKey: .fairy)
     }
+}
+
+struct Move: Codable, Identifiable {
+    let id = UUID()
+    let idNum: Int
+    let name, effect: String
+    let type: TypeEnum
+    let kind: Kind
+    let power: Int
+    let accuracy: Accuracy
+    let pp: Int
+
+    enum CodingKeys: String, CodingKey {
+        case idNum = "IDNum"
+        case name = "Name"
+        case effect = "Effect"
+        case type = "Type"
+        case kind = "Kind"
+        case power = "Power"
+        case accuracy = "Accuracy"
+        case pp = "PP"
+    }
+}
+
+enum Accuracy: String, Codable {
+    case empty = ""
+    case the100 = "100%"
+    case the101 = "101%"
+    case the30 = "30%"
+    case the50 = "50%"
+    case the55 = "55%"
+    case the60 = "60%"
+    case the70 = "70%"
+    case the75 = "75%"
+    case the80 = "80%"
+    case the85 = "85%"
+    case the90 = "90%"
+    case the95 = "95%"
+}
+
+enum Kind: String, Codable {
+    case a = "a-"
+    case acc = "acc-"
+    case d = "d-"
+    case kindA = "a+"
+    case kindD = "d+"
+    case kindS = "s-"
+    case physical = "Physical"
+    case s = "s+"
+    case sd = "sd+"
+    case special = "Special"
+    case status = "Status"
+}
+
+enum TypeEnum: String, Codable {
+    case bug = "Bug"
+    case dark = "Dark"
+    case dragon = "Dragon"
+    case electric = "Electric"
+    case fighting = "Fighting"
+    case fire = "Fire"
+    case flying = "Flying"
+    case ghost = "Ghost"
+    case grass = "Grass"
+    case ground = "Ground"
+    case ice = "Ice"
+    case normal = "Normal"
+    case poison = "Poison"
+    case psychic = "Psychic"
+    case rock = "Rock"
+    case steel = "Steel"
+    case typeless = "Typeless"
+    case water = "Water"
 }

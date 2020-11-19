@@ -9,17 +9,17 @@
 import SwiftUI
 
 struct MovesView: View {
-    let moves: [Moves]!
+    let moves: [Move]!
 	@State private var searchQuery: String = ""
 	var body: some View {
 		VStack(alignment: .leading, spacing: 0) {
 			List {
 				ForEach(moves) { item in
-					NavigationLink(destination: MovesDetail(move: item).navigationBarTitle("\(item.ename)")) {
+                    NavigationLink(destination: MovesDetail(move: item).navigationBarTitle("\(item.name.contains(" ") ? item.name : item.name.camelCaseToWords())")) {
                         HStack {
-                            Text("\(item.ename)").font(.subheadline).bold()
+                            Text("\(item.name.contains(" ") ? item.name : item.name.camelCaseToWords())").font(.subheadline).bold()
                             Spacer()
-                            Image(item.type)
+                            Image(item.type.rawValue)
                         }
 					}
                 }.makeEmptySection()
@@ -29,50 +29,45 @@ struct MovesView: View {
 }
 
 struct MovesDetail: View {
-	let move: Moves!
+	let move: Move!
 	
 	var body: some View {
 		List {
 			Group {
                 HStack {
-                    Image(move.type)
+                    Image(move.type.rawValue)
                     Spacer()
-                    if(move.power == 0) {
+                    if(move.kind.rawValue == "Special" || move.power == 0) {
                         Image("Special")
                     } else {
                         Image("Physical")
                     }
                 }
             }.makeNewLineSection(str: "Type")
-			Group {
-				HStack {
-					Text("Accuracy").font(.subheadline).bold()
-					Spacer()
-					Text("\(move.accuracy)").font(.subheadline).bold().foregroundColor(.green)
-				}
-				HStack {
-					Text("Power").font(.subheadline).bold()
-					Spacer()
-					Text("\(move.power)").font(.subheadline).bold().foregroundColor(.blue)
-				}
-				HStack {
-					Text("PP").font(.subheadline).bold()
-					Spacer()
-					Text("\(move.pp)").font(.subheadline).bold().foregroundColor(.purple)
-				}
+            Group {
+                VStack(spacing: 0) {
+                    Spacer()
+                    Text("\(move.effect)").subhead()
+                    Spacer()
+                }
+            }.makeSection(str: "Description")
+            Group {
+                HStack {
+                    Text("Accuracy").font(.subheadline).bold()
+                    Spacer()
+                    Text("\(move.accuracy.rawValue == "" ? "-" : move.accuracy.rawValue)").font(.subheadline).bold().foregroundColor(.green)
+                }
+                HStack {
+                    Text("Power").font(.subheadline).bold()
+                    Spacer()
+                    Text("\(String(move.power) == "0" ? "-" : String(move.power))").font(.subheadline).bold().foregroundColor(.blue)
+                }
+                HStack {
+                    Text("PP").font(.subheadline).bold()
+                    Spacer()
+                    Text("\(move.pp)").font(.subheadline).bold().foregroundColor(.purple)
+                }
             }.makeSection(str: "Stats")
-			Group {
-				HStack {
-					Text("Japanese").font(.subheadline).bold()
-					Spacer()
-					Text("\(move.jname)").font(.subheadline).bold()
-				}
-				HStack {
-					Text("Chinese").font(.subheadline).bold()
-					Spacer()
-					Text("\(move.cname)").font(.subheadline).bold()
-				}
-            }.makeSection(str: "Name Translations")
         }.fixList()
 	}
 }

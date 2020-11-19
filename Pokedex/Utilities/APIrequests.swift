@@ -119,28 +119,28 @@ class getPokedex : ObservableObject {
 }*/
 
 class getMoves: ObservableObject {
-	@Published var moves: [Moves]!
+	@Published var moves: [Move]!
 	
 	init() {
 		loadMoves()
         moves = moves.sorted {
-            $0.ename < $1.ename
+            $0.name < $1.name
         }
 	}
 	
 	func loadMoves() {
-		let urlString = "https://raw.githubusercontent.com/sammydentino/Pokedex/master/moves.json"
-		
-		if let url = URL(string: urlString) {
-			if let d = try? Data(contentsOf: url) {
-				// we're OK to parse!
-				let decoder = JSONDecoder()
-				if let data = try? decoder.decode([Moves].self, from: d) {
-					moves = data
-				}
-			}
-		}
-	}
+        let urlString = "https://raw.githubusercontent.com/sammydentino/Pokedex/master/moves.json"
+        
+        if let url = URL(string: urlString) {
+            if let d = try? Data(contentsOf: url) {
+                // we're OK to parse!
+                let decoder = JSONDecoder()
+                if let data = try? decoder.decode([Move].self, from: d) {
+                    moves = data
+                }
+            }
+        }
+    }
 }
 
 class getTypes: ObservableObject {
